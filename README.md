@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # ProyectoM1_JorgeMora
 
@@ -31,3 +32,9 @@ I'm an aspiring full stack developer, visit my GitHub profile and leave your com
 Currently studying the BootCamp Full Stack Development in SoyHenry Academy [https://www.soyhenry.com/]
 
 
+=======
+# ProyectoM1_JorgeMora-
+Presentación de Proyecto Integrador del Módulo 1 del BootCamp "FullStack developer" de Soy Henry. 
+
+Consiste en una página web estática e interactiva para generación de paletas de colores al azar, con opción de bloqueo de color, guardado en Portapapeles, feedback inmediato para el usuario y reacciones visuales a eventos como mover o click. 
+>>>>>>> 529d76a099377da5457b9da9baf11f3674c506cd
