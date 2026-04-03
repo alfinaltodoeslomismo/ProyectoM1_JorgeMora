@@ -1,0 +1,85 @@
+:root {
+    --bg-color: #f4f7f6;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+.controls {
+    margin-bottom: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+#generate-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+#generate-btn:hover { background: #555; }
+
+/* Toggle Switch Styles */
+.switch-container { display: flex; align-items: center; gap: 10px; font-weight: bold; }
+.switch { position: relative; display: inline-block; width: 50px; height: 24px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc; transition: .4s; border-radius: 34px;
+}
+.slider:before {
+    position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px;
+    background-color: white; transition: .4s; border-radius: 50%;
+}
+input:checked + .slider { background-color: #2196F3; }
+input:checked + .slider:before { transform: translateX(26px); }
+
+/* Palette Grid */
+.palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.color-card {
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.color-box {
+    height: 150px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.color-box:hover { transform: scale(1.02); }
+
+.color-code {
+    display: block;
+    margin: 10px 0;
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.card-actions { display: flex; justify-content: space-around; }
+.lock-btn { cursor: pointer; border: none; background: none; font-size: 18px; }
