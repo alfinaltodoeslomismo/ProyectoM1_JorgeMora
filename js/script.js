@@ -48,7 +48,7 @@ function renderPalette() {
             <div class="color-box" style="background-color: ${colorObj.hex}" onclick="copyToClipboard('${displayCode}')"></div>
             <span class="color-code" onclick="copyToClipboard('${displayCode}')">${displayCode}</span>
             <div class="card-actions">
-                <button class="lock-btn" onclick="toggleLock(${index})">${colorObj.locked ? '🔒' : '🔓'}</button>
+                <button class="lock-btn" onclick="toggleLock(${index})">${colorObj.locked ? '💗' : '⏭️'}</button>
             </div>
         `;
         container.appendChild(card);

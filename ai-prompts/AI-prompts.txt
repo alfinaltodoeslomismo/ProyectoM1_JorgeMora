@@ -3,7 +3,7 @@ AI Prompt
 Google Chrome
 
 "give me html, css and js code for a functional color palette 
-with for 6, 8 or 9 options, 
+with a sitch for 6, 8 or 9  color card options, 
 with a generator button 
 a switch between hex and hsl, 
 the color cards should not change the change in the color code, 
@@ -11,3 +11,7 @@ only with the color generator button
 Add a funciton to block the color, 
 the color should not change or dissapear if it is blocked, 
 and add a function to copy the color code to clipboard
+
+AI prompt to style the H1 element:
+
+"create a css code to style an h1 element with features for a design brand"
