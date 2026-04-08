@@ -15,9 +15,25 @@ Descripción del proyecto.
 
 
 
+
 ## Documentation
 
 [Documentation](https://docs.google.com/document/d/1ogdF8306wJMytAbp5APsPJU4kPW1CCbOYDJhPM_UGio/edit?usp=sharing)
+
+
+Adicionales:
+
+- Para la creación del archivo .ico para el favicon se usó el portal https://favicon.io/, el diseño se hizo en https://nanobanana.io/. Recomiendo su uso, es muy intuitivo.
+
+Se buscaba también cubrir con las opciones de puntos exrta para este proyecto, que son:
+- Bloqueo de colores.
+- Guardado de paletas en localStorage.
+- Animaciones sutiles. 
+- Copiar el código HEX al portapapeles al hacer clic sobre un color.
+- Mejoras visuales de UI.
+
+En la versión final de este proyecto se logró incluir varias de estas características.
+
 
 
 ## Features: to be developed in the future

@@ -3,15 +3,18 @@ AI Prompt
 Google Chrome
 
 "give me html, css and js code for a functional color palette 
-with a sitch for 6, 8 or 9  color card options, 
+with a switch for 6, 8 or 9  color card options, 
 with a generator button 
 a switch between hex and hsl, 
-the color cards should not change the change in the color code, 
-only with the color generator button 
+the color cards should only change if the genrator button is clicked
 Add a funciton to block the color, 
-the color should not change or dissapear if it is blocked, 
+the color card should not change or dissapear if it is blocked, 
 and add a function to copy the color code to clipboard
 
 AI prompt to style the H1 element:
 
 "create a css code to style an h1 element with features for a design brand"
+
+Next prompt:
+
+create full html, css and js codes for a random color palette generator for the company Colorfly Studio, Add a color generator button, Option to choose between 6, 8 or 9 color cards, options to block color cards and move them to the first positions and prevent them to change color, Add a toggle to move between hsl and HEX color formats Add animations to make it user reactive Make it look like an arcade game from the 80´s with pixels, function to copy color to clipboard by clicking the color card, colors should only change with the color generation button

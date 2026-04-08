@@ -1,112 +1,113 @@
-const container = document.getElementById('palette-container');
-const countSelect = document.getElementById('card-count');
-const formatBtn = document.getElementById('toggle-format');
-const genBtn = document.getElementById('gen-btn');
-const toast = document.getElementById('copy-toast');
+const grid = document.getElementById('palette-grid');
+const generateBtn = document.getElementById('generate-btn');
+const cardCountSelect = document.getElementById('card-count');
+const formatToggle = document.getElementById('format-toggle');
+const toast = document.getElementById('toast');
 
 let colors = [];
+let currentFormat = 'HEX';
 
-// Helper: Generate Random HSL
-function getRandomColor() {
-    const h = Math.floor(Math.random() * 360);
-    const s = Math.floor(Math.random() * 70) + 30; // Vibrancy boost
-    const l = Math.floor(Math.random() * 60) + 20; // Avoid pure black/white
-    return { h, s, l, hex: hslToHex(h, s, l), locked: false };
-}
-
-// Convert HSL to HEX for display
-function hslToHex(h, s, l) {
-    l /= 100;
-    const a = s * Math.min(l, 1 - l) / 100;
-    const f = n => {
-        const k = (n + h / 30) % 12;
-        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-        return Math.round(255 * color).toString(16).padStart(2, '0');
-    };
-    return `#${f(0)}${f(8)}${f(4)}`.toUpperCase();
-}
-
-function updatePalette() {
-    const count = parseInt(countSelect.value);
+// Initialize Palette
+function initPalette() {
+    const count = parseInt(cardCountSelect.value);
+    grid.className = `grid-${count}`;
     
-    // Maintain existing locks if we change count
-    for (let i = 0; i < count; i++) {
-        if (!colors[i] || !colors[i].locked) {
-            colors[i] = getRandomColor();
+    // Maintain locked colors, fill the rest with new random ones
+    const newColors = [];
+    const lockedOnes = colors.filter(c => c.locked);
+    
+    // Locked colors move to the front
+    lockedOnes.forEach(c => newColors.push(c));
+    
+    while(newColors.length < count) {
+        newColors.push({
+            value: generateRandomColor(),
+            locked: false
+        });
+    }
+    
+    colors = newColors.slice(0, count);
+    renderPalette();
+}
+
+function generateRandomColor() {
+    return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
+}
+
+function hexToHsl(hex) {
+    let r = parseInt(hex.slice(1, 3), 16) / 255;
+    let g = parseInt(hex.slice(3, 5), 16) / 255;
+    let b = parseInt(hex.slice(5, 7), 16) / 255;
+    let max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+    if (max == min) h = s = 0;
+    else {
+        let d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
         }
+        h /= 6;
     }
-    
-    // Adjust Grid Layout
-    const cols = count === 9 ? 3 : (count === 8 ? 4 : 3);
-    container.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-    
-    render();
+    return `HSL(${(h*360).toFixed(0)}, ${(s*100).toFixed(0)}%, ${(l*100).toFixed(0)}%)`;
 }
 
-function render() {
-    container.innerHTML = '';
-    const count = parseInt(countSelect.value);
-    
-    const cols = count === 9 ? 3 : (count === 8 ? 4 : 3);
-    container.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-
-    colors.forEach((data, index) => {
+function renderPalette() {
+    grid.innerHTML = '';
+    colors.forEach((colorObj, index) => {
         const card = document.createElement('div');
-        card.className = `color-card ${data.locked ? 'is-locked' : ''}`;
+        card.className = `color-card ${colorObj.locked ? 'locked' : ''}`;
+        card.style.backgroundColor = colorObj.value;
         
-        // Define the HSL string for easier access
-        const hslString = `hsl(${data.h}, ${data.s}%, ${data.l}%)`;
-
+        const displayCode = currentFormat === 'HEX' ? colorObj.value : hexToHsl(colorObj.value);
+        
         card.innerHTML = `
-            <div class="color-swatch" style="background: ${data.hex}" onclick="copyColor('${data.hex}', '${hslString}')"></div>
-            <div class="card-bottom">
-                <span class="color-code hex-val">${data.hex}</span>
-                <span class="color-code hsl-val">${hslString}</span>
-                <button class="lock-btn ${data.locked ? 'active' : ''}" onclick="toggleLock(${index})">
-                    ${data.locked ? 'LOCKED 🔒' : 'LOCK 🔓'}
-                </button>
-            </div>
+            <button class="lock-btn">${colorObj.locked ? 'UNLK' : 'LOCK'}</button>
+            <div class="card-code">${displayCode}</div>
         `;
-        container.appendChild(card);
-    });
-}
-
-function toggleLock(index) {
-    colors[index].locked = !colors[index].locked;
-    render();
-}
-
-function copyColor(hex, hsl) {
-    // Check which mode is currently active on the body
-    const isHexMode = document.body.classList.contains('hex-mode');
-    const textToCopy = isHexMode ? hex : hsl;
-
-    navigator.clipboard.writeText(textToCopy).then(() => {
-        // Update toast text to show what was copied
-        toast.innerText = `Copied: ${textToCopy} ✨`;
-        toast.classList.add('show');
         
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 2000);
+        // Copy to clipboard on card click (excluding lock button)
+        card.onclick = (e) => {
+            if(e.target.tagName !== 'BUTTON') {
+                navigator.clipboard.writeText(displayCode);
+                showToast();
+            }
+        };
+
+        // Lock Toggle
+        card.querySelector('.lock-btn').onclick = (e) => {
+            e.stopPropagation();
+            colors[index].locked = !colors[index].locked;
+            // Move locked items to front immediately or wait for next generate? 
+            // The prompt says move them to first positions.
+            initPalette(); 
+        };
+
+        grid.appendChild(card);
     });
 }
 
-// Global Events
-formatBtn.addEventListener('click', () => {
-    document.body.classList.toggle('hex-mode');
-    document.body.classList.toggle('hsl-mode');
-});
+function showToast() {
+    toast.style.display = 'block';
+    setTimeout(() => toast.style.display = 'none', 1500);
+}
 
-genBtn.addEventListener('click', updatePalette);
-countSelect.addEventListener('change', updatePalette);
+// Event Listeners
+generateBtn.onclick = () => {
+    // Regenerate only unlocked colors
+    colors = colors.map(c => c.locked ? c : { value: generateRandomColor(), locked: false });
+    renderPalette();
+};
 
-window.addEventListener('keydown', (e) => {
-    if (e.code === 'Space') {
-        e.preventDefault(); // Stop scrolling
-        updatePalette();
-    }
-});
+cardCountSelect.onchange = initPalette;
+
+formatToggle.onclick = () => {
+    currentFormat = currentFormat === 'HEX' ? 'HSL' : 'HEX';
+    document.querySelectorAll('.toggle-label').forEach(l => l.classList.toggle('active'));
+    renderPalette();
+};
 
 // Start
-updatePalette();
+initPalette();

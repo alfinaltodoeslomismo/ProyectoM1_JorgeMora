@@ -3,29 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VibePalette // Modern Generator</title>
+    <title>Colorfly Studio - Arcade Palette Gen</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <!-- Retro Pixel Font -->
+    <link href="https://googleapis.com" rel="stylesheet">
 </head>
-<body class="hex-mode">
+<body class="arcade-bg">
+    <div class="game-container">
+        <header>
+            <h1 class="pixel-text color-flicker">COLORFLY STUDIO</h1>
+            <p class="subtitle">INSERT COIN TO GENERATE</p>
+        </header>
 
-    <header>
-        <div class="logo">Vibe<span>Palette</span></div>
-        <div class="controls">
-            <select id="card-count">
-                <option value="6">6 Colors</option>
-                <option value="8">8 Colors</option>
-                <option value="9">9 Colors</option>
-            </select>
+        <div class="controls-panel">
+            <div class="control-group">
+                <label>CARDS:</label>
+                <select id="card-count" class="retro-select">
+                    <option value="6">6</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+            </div>
             
-            <button id="toggle-format" class="secondary-btn">HEX ⇄ HSL</button>
-            <button id="gen-btn" class="primary-btn">GENERATE [Space]</button>
+            <div class="control-group">
+                <label>FORMAT:</label>
+                <div class="toggle-container" id="format-toggle">
+                    <span class="toggle-label active" data-format="HEX">HEX</span>
+                    <div class="toggle-switch"></div>
+                    <span class="toggle-label" data-format="HSL">HSL</span>
+                </div>
+            </div>
+
+            <button id="generate-btn" class="retro-btn">GENERATE!</button>
         </div>
-    </header>
 
-    <main id="palette-container"></main>
+        <div id="palette-grid" class="grid-6">
+            <!-- Cards will be injected here by JS -->
+        </div>
 
-    <div id="copy-toast">Copied to clipboard! ✨</div>
-
+        <div id="toast" class="pixel-toast">COPIED!</div>
+    </div>
     <script src="./js/script.js"></script>
 </body>
 </html>
