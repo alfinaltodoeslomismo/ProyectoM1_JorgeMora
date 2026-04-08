@@ -3,31 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colorfly Studio</title>
-    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <title>VibePalette // Modern Generator</title>
     <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body>
-    <div class="title">Colorfly Studio</div>
-    <div class="controls">
-        <div class="option">
-            <label>Number of Cards:</label>
-            <select id="cardCount">
-                <option value="6">6 Cards</option>
-                <option value="8">8 Cards</option>
-                <option value="9">9 Cards</option>
-            </select>
-        </div>
-        <div class="option">
-            <label>Format:</label>
-            <button id="formatSwitch">HEX</button>
-        </div>
-        <button id="generateBtn">Generate New Palette</button>
-    </div>
+<body class="hex-mode">
 
-    <div id="palette" class="palette-grid grid-6">
-        <!-- Cards will be injected here by JS -->
-    </div>
+    <header>
+        <div class="logo">Vibe<span>Palette</span></div>
+        <div class="controls">
+            <select id="card-count">
+                <option value="6">6 Colors</option>
+                <option value="8">8 Colors</option>
+                <option value="9">9 Colors</option>
+            </select>
+            
+            <button id="toggle-format" class="secondary-btn">HEX ⇄ HSL</button>
+            <button id="gen-btn" class="primary-btn">GENERATE [Space]</button>
+        </div>
+    </header>
+
+    <main id="palette-container"></main>
+
+    <div id="copy-toast">Copied to clipboard! ✨</div>
 
     <script src="./js/script.js"></script>
 </body>
