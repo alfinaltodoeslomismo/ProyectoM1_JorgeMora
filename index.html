@@ -3,46 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colorfly Studio - Arcade Palette Gen</title>
-    <link rel="stylesheet" href="./css/styles.css">
-    <!-- Retro Pixel Font -->
+    <title>COLORFLY STUDIO | ARCADE PALETTE</title>
+    <link rel="favicon" type="image/.ico" href="./img/favicon.ico">
     <link href="https://googleapis.com" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body class="arcade-bg">
-    <div class="game-container">
+<body>
+    <div class="crt-overlay"></div>
+    <div class="arcade-cabinet">
         <header>
-            <h1 class="pixel-text color-flicker">COLORFLY STUDIO</h1>
-            <p class="subtitle">INSERT COIN TO GENERATE</p>
+            <h1 class="glitch" data-text="COLORFLY">COLORFLY Studio</h1>
+            <h2 class="studio-text">Color Palette Generator</h2>
+            <div class="high-score">HIGH SCORE: 08042026</div>
         </header>
 
-        <div class="controls-panel">
-            <div class="control-group">
-                <label>CARDS:</label>
-                <select id="card-count" class="retro-select">
-                    <option value="6">6</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
+        <div class="panel">
+            <div class="setting">
+                <span>SLOTS:</span>
+                <select id="card-count">
+                    <option value="6">06</option>
+                    <option value="8">08</option>
+                    <option value="9">09</option>
                 </select>
             </div>
             
-            <div class="control-group">
-                <label>FORMAT:</label>
-                <div class="toggle-container" id="format-toggle">
-                    <span class="toggle-label active" data-format="HEX">HEX</span>
-                    <div class="toggle-switch"></div>
-                    <span class="toggle-label" data-format="HSL">HSL</span>
-                </div>
+            <div class="setting">
+                <span>FORMAT:</span>
+                <button id="format-toggle" class="mini-btn">HEX</button>
             </div>
-
-            <button id="generate-btn" class="retro-btn">GENERATE!</button>
         </div>
 
-        <div id="palette-grid" class="grid-6">
-            <!-- Cards will be injected here by JS -->
-        </div>
+        <div id="palette-grid" class="grid-6"></div>
 
-        <div id="toast" class="pixel-toast">COPIED!</div>
+        <div class="action-zone">
+            <button id="generate-btn">PUSH START [SPACE]</button>
+            <p class="blink">CLICK CARD TO COPY DATA</p>
+        </div>
     </div>
     <script src="./js/script.js"></script>
 </body>
