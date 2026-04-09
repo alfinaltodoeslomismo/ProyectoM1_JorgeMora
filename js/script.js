@@ -55,7 +55,7 @@ function createCard(existingHex = null) {
             const isCurrentlyLocked = card.dataset.locked === "true";
             card.dataset.locked = !isCurrentlyLocked;
             card.classList.toggle('locked');
-            e.target.innerText = isCurrentlyLocked ? "BLOCK" : "UNLOCKED";
+            e.target.innerText = isCurrentlyLocked ? "BLOCK" : "LOCKED";
             e.stopPropagation();
         } else if (e.target.classList.contains('move-trigger')) {
             grid.prepend(card);
