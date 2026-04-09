@@ -10,10 +10,16 @@ body {
     color: #fff;
     font-family: 'Press Start 2P', cursive;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     padding: 20px;
     margin: 0;
     overflow-x: hidden;
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+    align-items: center;
+
 }
 
 /* CRT Scanline Effect */
@@ -54,7 +60,8 @@ h1.glitch {
     background-color: #880088;
 }
 
-.high-score { color: var(--neon-green); text-align: right; font-size: 10px; margin-bottom: 10px; }
+.high-score { color: var(--neon-green); text-align: 
+    right; font-size: 10px; margin-bottom: 10px; font-weight: bold;}
 
 .panel {
     display: flex;
@@ -92,8 +99,9 @@ h1.glitch {
 .color-info {
     background: #000;
     color: #fff;
-    font-size: 10px;
+    font-size: 12px;
     width: 100%;
+    font-weight: bold;
     text-align: center;
     padding: 5px 0;
 }
@@ -124,6 +132,7 @@ h1.glitch {
     font-family: inherit;
     padding: 20px;
     font-size: 18px;
+    font-weight: bold;
     margin-top: 30px;
     cursor: pointer;
     box-shadow: 0 8px 0 #880088;
@@ -134,3 +143,17 @@ h1.glitch {
 .blink { animation: blink 0.8s infinite; text-align: center; font-size: 10px; margin-top: 15px; color: #666; }
 
 @keyframes blink { 50% { opacity: 0; } }
+
+.bottom-button {
+    display: flex;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    color: var(--neon-pink);
+    background-color: var(--bg-black)
+
+    
+}
+   
+
+
+}
