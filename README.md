@@ -11,12 +11,12 @@ Descripción del proyecto.
 - Generar colores aleatorios en dos formatos: HSL y HEX
 - Mostrar la tarjeta de color junto a su código de color.
 
-#GitHub Pages deploy link:
+# GitHub Pages deploy link:
 https://alfinaltodoeslomismo.github.io/ProyectoM1_JorgeMora/
 
+# Google Drive files:
 
-
-
+https://drive.google.com/drive/folders/1od27lNpZsvXjP_AVz0DbpGPA1WlO5R7F?usp=drive_link
 
 
 
