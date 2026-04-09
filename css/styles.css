@@ -8,7 +8,7 @@
 body {
     background-color: #111;
     color: #fff;
-    font-family: 'Press Start 2P', cursive;
+    font-family: verdana, cursive;
     display: flex;
     flex-direction: column;
     justify-content: center;
